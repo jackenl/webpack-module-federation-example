@@ -19,6 +19,9 @@ module.exports = {
     quiet: true,
     hot: true,
   },
+  resolve: {
+    extensions: ['.vue', '.jsx', '.js', 'json'],
+  },
   module: {
     rules: [
       {
@@ -37,6 +40,15 @@ module.exports = {
         test: /\.css$/,
         use: ['vue-style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: {
+          loader: 'url-loader',
+          options: {
+            esModule: false,
+          },
+        },
+      },
     ],
   },
   plugins: [
@@ -49,6 +61,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'app3',
       filename: 'remoteEntry.js',
+      exposes: {
+        './router': './src/router',
+      },
       shared: {
         ...deps,
       },

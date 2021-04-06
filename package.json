@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bootstrap": "lerna bootstrap --ignore-scripts",
+    "start:vue": "lerna run --scope @vue-microfrontends/* --parallel start",
+    "serve:vue": "lerna run --scope @vue-microfrontends/* --parallel serve",
+    "build:vue": "lerna run --scope @vue-microfrontends/* build"
   },
   "keywords": [],
   "author": "",

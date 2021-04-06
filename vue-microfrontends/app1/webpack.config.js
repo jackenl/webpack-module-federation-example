@@ -18,6 +18,9 @@ module.exports = {
     quiet: true,
     hot: true,
   },
+  resolve: {
+    extensions: ['.vue', '.jsx', '.js', 'json'],
+  },
   module: {
     rules: [
       {
@@ -36,6 +39,15 @@ module.exports = {
         test: /\.css$/,
         use: ['vue-style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpg|gif)$/i,
+        use: {
+          loader: 'url-loader',
+          options: {
+            esModule: false,
+          },
+        },
+      },
     ],
   },
   plugins: [
@@ -47,8 +59,17 @@ module.exports = {
     new CleanWebpackPlugin(),
     new ModuleFederationPlugin({
       name: 'app1',
+      filename: 'remoteEntry.js',
+      remotes: {
+        app1: 'app1@http://localhost:3000/remoteEntry.js',
+        app2: 'app2@http://localhost:3001/remoteEntry.js',
+        app3: "app3@http://localhost:3002/remoteEntry.js",
+      },
+      exposes: {
+        './Content': './src/components/Content.vue',
+      },
       shared: {
-        vue: {
+        'vue': {
           singleton: true,
         },
         'vue-router': {
