@@ -1,5 +1,5 @@
 <template>
-  <div class="el-content">{{ title }}</div>
+  <div class="content-wrap">{{ title }}</div>
 </template>
 
 <script>

@@ -7,6 +7,7 @@ const path = require('path')
 module.exports = {
   entry: './src/index.js',
   mode: 'development',
+  cache: false,
   output: {
     publicPath: 'auto',
     path: path.resolve(__dirname, 'dist'),
@@ -61,12 +62,8 @@ module.exports = {
       name: 'app1',
       filename: 'remoteEntry.js',
       remotes: {
-        app1: 'app1@http://localhost:3000/remoteEntry.js',
         app2: 'app2@http://localhost:3001/remoteEntry.js',
         app3: "app3@http://localhost:3002/remoteEntry.js",
-      },
-      exposes: {
-        './Content': './src/components/Content.vue',
       },
       shared: {
         'vue': {

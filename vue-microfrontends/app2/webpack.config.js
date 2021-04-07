@@ -8,6 +8,7 @@ const deps = require('./package.json').dependencies
 module.exports = {
   entry: './src/index.js',
   mode: 'development',
+  cache: false,
   output: {
     publicPath: 'auto',
     path: path.resolve(__dirname, 'dist'),
@@ -61,11 +62,15 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'app2',
       filename: 'remoteEntry.js',
+      remotes: {
+        app2: 'app2@http://localhost:3001/remoteEntry.js',
+      },
       exposes: {
         './router': './src/router',
+        './Content': './src/components/Content',
       },
       shared: {
-        ...deps
+        ...deps,
       },
     }),
   ],

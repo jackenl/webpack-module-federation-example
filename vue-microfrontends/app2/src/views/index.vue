@@ -1,13 +1,17 @@
 <template>
   <div class="index-container">
     <h1>Here is in App2</h1>
-    <!-- <Conntent></Conntent>
-    <Button>Remote Button</Button> -->
+    <Content></Content>
   </div>
 </template>
 
 <script>
+import Content from 'app2/Content'
+
 export default {
+  components: {
+    Content,
+  },
   data() {
     return {}
   },
