@@ -13,6 +13,6 @@ example: yarn start:vue
 
 ### Compiles and minifies for production
 ```
-yarn build:@apt
+yarn build:@ppt
 example: yarn build:vue
 ```
